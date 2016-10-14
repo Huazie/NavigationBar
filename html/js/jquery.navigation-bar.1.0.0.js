@@ -27,12 +27,17 @@
 		_init 				: function( options ) {
 			
 			this.options 		= $.extend( true, {}, $.NavigationBar.defaults, options );
+
+			this.$el.css({
+				'position'         	: 'fixed',
+				height             	: 45,
+			});
 			
 			this.$list			= this.$el.find('.navigationbar_list');
 
 			this.$list.css({
 				left               	: 0,
-				height             	: 46,
+				height             	: 45,
 				margin				: 0,
 		    	padding				: 0
 			});
@@ -70,7 +75,7 @@
 				'display'          	: 'block',
 				'position'         	: 'absolute',
 			    'border'           	: '0',
-			    'height'           	: '3px',
+			    'height'           	: '2px',
 			    'background-color' 	: '#48a5f4',
 			    'top'              	: '43px',
 			    margin				: 0,
@@ -114,7 +119,7 @@
 
 	};
 	
-	var logError 			= function( message ) {
+	var logError 				= function( message ) {
 		if ( this.console ) {
 			console.error( message );
 		}

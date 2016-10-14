@@ -1,16 +1,16 @@
 .find_nav {
-    width: 80%;
+    width: auto;
     height: 45px;
     background-color: #f9f9f9;
-    position: fixed;
     top: 0;
-    z-index: 99;
+    /*z-index: 99;*/
     border: 1px solid #ddd;
-    display: -moz-box;
+    /*display: -moz-box;
     display: -webkit-box;
-    display: box;
+    display: box;*/
     margin-top: 20px;
-    margin-left: 100px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .current a {
