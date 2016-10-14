@@ -1,0 +1,27 @@
+/**{
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color:rgba(255,255,255,0);-webkit-overflow-scrolling:touch;overflow-scrolling:touch;
+}*/
+ul {
+    /*list-style: none;*/
+}
+.find_nav {
+    width: 80%;
+    height: 45px;
+    background-color: #f9f9f9;
+    position: fixed;
+    top: 0;
+    z-index: 99;
+    border: 1px solid #ddd;
+    display: -moz-box;
+    display: -webkit-box;
+    display: box;
+    margin-top: 20px;
+    margin-left: 100px;
+}
+
+.current a {
+    color: #48a5f4 !important;
+}
+

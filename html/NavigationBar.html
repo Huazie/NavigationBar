@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)http://down.admin5.com/demo/code_pop/19/2069/ -->
+<html><head lang="en"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>导航栏代码</title>
+<meta name="viewport" content=" height = device-height,width = device-width,initial-scale = 1.0,minimum-scale = 1.0,maximum-scale = 1.0,user-scalable = no">
+<link rel="stylesheet" href="./js/main.css">
+<script src="./js/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script src="./js/handlebars.js" type="text/javascript"></script>
+<script src="./js/helpers.js" type="text/javascript"></script>
+<script src="./js/jquery.navigation-bar.1.0.0.js" type="text/javascript"></script>
+<!-- <script src="./js/js.js"></script> -->
+</head>
+<body>
+<div id="find_nav" class="find_nav">
+    
+</div>
+<script id="tpl_navigationbar" type="text/x-handlebars-template">
+    <div class="navigationbar_list">
+    	{{#nav_list nav}}
+    		<a href="javascript:handleClickEvent({{index}});">{{title}}</a>
+    	{{/nav_list}}
+    </div>
+</script>
+<script type="text/javascript">
+
+var json = {
+	nav:[
+		{ index:0, title:"资讯"},
+		{ index:1, title:"分析"},
+		{ index:2, title:"原创"},
+		{ index:3, title:"评论"},
+		{ index:4, title:"技术"},
+		{ index:5, title:"项目"}
+	]
+}
+
+
+$(function() {
+
+	$('#find_nav').navigationBar(json);
+
+	//var navigationBar = new $.NavigationBar( {}, $('#find_nav') );
+
+});
+
+function handleClickEvent(index){
+	console.log(json.nav[index]['title']);
+	console.log(index);
+}
+
+</script>
+
+</body>
+</html>
