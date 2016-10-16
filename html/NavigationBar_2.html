@@ -5,23 +5,22 @@
 
 <meta charset="utf-8" /> 
 
-<title>自定义导航栏</title>
+<title>自定义导航栏_简单图片</title>
 <link rel="stylesheet" href="./css/main.css" >
-<script src="./js/common/jquery/jquery-1.8.3.min.js"></script>
-<script src="./js/common/handlebars/handlebars.js"></script>
-<script src="./js/common/handlebars/helpers.js"></script>
-<script src="./js/jquery.navigation-bar.1.0.0.js"></script>
+<script src="./js/common/jquery/1.8.3/jquery-1.8.3.min.js"></script>
+<script src="./js/common/handlebars/1.0.6/handlebars.js"></script>
+<script src="./js/common/handlebars/1.0.6/helpers.js"></script>
+<script src="./js/common/navigationbar/1.0.0/navigation-bar.1.0.0.js"></script>
 </head>
 
 <body>
 <div id="find_nav" class="find_nav">
     
 </div>
-<!-- 导航栏模板脚本 -->
 <script id="tpl_navigationbar" type="text/x-handlebars-template">
     <div class="navigationbar_list">
     	{{#nav_list nav}}
-    		<a href="javascript:handleClickEvent({{index}});">{{title}}</a>
+    		<a href="javascript:handleClickEvent({{index}});"><img src="{{url}}"/></a>
     	{{/nav_list}}
     </div>
 </script>
@@ -29,12 +28,12 @@
 
 var json = {
 	nav:[
-		{ index:0, title:"Title1"},
-		{ index:1, title:"Title2"},
-		{ index:2, title:"Title3"},
-		{ index:3, title:"Title4"},
-		{ index:4, title:"Title5"},
-		{ index:5, title:"Title6"}
+		{ index:0, url:"./image/11.png"},
+		{ index:1, url:"./image/12.png"},
+		{ index:2, url:"./image/13.png"},
+		{ index:3, url:"./image/14.png"},
+		{ index:4, url:"./image/15.png"},
+		{ index:5, url:"./image/16.png"}
 	]
 }
 
@@ -51,7 +50,7 @@ $(function() {
  * callback 回调函数
  */
 function handleClickEvent(index){
-	console.log(json.nav[index]['title']);
+	console.log(json.nav[index]['url']);
 	console.log(index);
 }
 

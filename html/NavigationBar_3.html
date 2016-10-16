@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)http://down.admin5.com/demo/code_pop/19/2069/ -->
+<html>
+<head>
+
+<meta charset="utf-8" /> 
+
+<title>自定义导航栏_文字和图片</title>
+<link rel="stylesheet" href="./css/main.css" >
+<script src="./js/common/jquery/1.8.3/jquery-1.8.3.min.js"></script>
+<script src="./js/common/handlebars/1.0.6/handlebars.js"></script>
+<script src="./js/common/handlebars/1.0.6/helpers.js"></script>
+<script src="./js/common/navigationbar/1.0.0/navigation-bar.1.0.0.js"></script>
+</head>
+
+<body>
+<div id="find_nav" class="find_nav">
+    
+</div>
+<script id="tpl_navigationbar" type="text/x-handlebars-template">
+    <div class="navigationbar_list">
+    	{{#nav_list nav}}
+    		<a href="javascript:handleClickEvent({{index}});">
+    			<img src="{{url}}" />
+    			<label>{{title}}</label>
+    		</a>
+    	{{/nav_list}}
+    </div>
+</script>
+<script type="text/javascript">
+
+var json = {
+	nav:[
+		{ index:0, title:"Title1", url:"./image/11.png"},
+		{ index:1, title:"Title2", url:"./image/12.png"},
+		{ index:2, title:"Title3", url:"./image/13.png"},
+		{ index:3, title:"Title4", url:"./image/14.png"},
+		{ index:4, title:"Title5", url:"./image/15.png"},
+		{ index:5, title:"Title6", url:"./image/16.png"}
+	]
+}
+
+
+$(function() {
+
+	$('#find_nav').navigationBar({
+		navWidth  : 150,
+		navHeight : 60
+	},json);
+
+	//var navigationBar = new $.NavigationBar( {}, $('#find_nav') );
+
+});
+
+/**
+ * callback 回调函数
+ */
+function handleClickEvent(index){
+	console.log(json.nav[index]['url']);
+	console.log(index);
+}
+
+</script>
+
+</body>
+</html>

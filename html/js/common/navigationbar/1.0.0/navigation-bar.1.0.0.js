@@ -1,10 +1,13 @@
 /**
  * navigation-bar.1.0.0.js
+ * 自定义导航栏插件
+ * (1). 依赖jQuery第三方库，详细请至官网了解：http://jquery.com/
+ * (2). 依赖Handlebars第三方库，详细请至官网了解：http://handlebarsjs.com/
  *
  * Author: Huazie
- * Date: Mon Jan 30 2012
+ * Date: 2016/10/15
+ * Version: 1.0.0
  */
-
 
 (function( $, undefined ) {
 	
@@ -19,76 +22,100 @@
 	};
 	
 	$.NavigationBar.defaults 	= {
-		current	  : 0,
-		navWidth  : 100
+		navWidth  		: 100,			// 导航栏标签的宽度
+		navHeight      	: 50,			// 导航栏标签的高度
+		sideLineHeight 	: 2,			// 导航栏的下边线的高度
+		sideLineColor   : '#48a5f4',  	// 导航栏的下边线的颜色
+		textSize  		: 18,			// 导航栏标签文字的大小
+		textColor		: '#666'		// 导航栏标签文字的大小
     };
 	
 	$.NavigationBar.prototype 	= {
 		_init 				: function( options ) {
 			
 			this.options 		= $.extend( true, {}, $.NavigationBar.defaults, options );
-
+			// 
 			this.$el.css({
-				'position'         	: 'fixed',
-				height             	: 45,
+				height             	: this.options.navHeight,
+				'position'   		: 'relative'
 			});
-			
-			this.$list			= this.$el.find('.navigationbar_list');
 
+			// 
+			this.$list			= this.$el.find('.navigationbar_list');
 			this.$list.css({
 				left               	: 0,
-				height             	: 45,
+				height             	: this.options.navHeight,
 				margin				: 0,
 		    	padding				: 0
 			});
 
+			// 
 			this.$ul			= this.$list.find('ul');
 			this.$ul.css({
 				'white-space'      	: 'nowrap',
 				margin				: 0,
-    			padding				: 0,
+    			padding				: 0
 			});
 
+			// 
 			this.$li 			= this.$ul.children();
 			this.$li.css({
 				'display'          	: 'inline-block',
 				margin				: 0,
-    			padding				: 0,
+    			padding				: 0
 			});
 
+			//
 			this.$a 			= this.$ul.find('li a');
 			this.$a.css({
 				'display'          	: 'block',
-			    'line-height'      	: '46px',
-			    'font-size'        	: '18px',
+			    'line-height'      	: this.options.navHeight + 'px',
+			    'font-size'        	: this.options.textSize + 'px',
 			    'text-align'       	: 'center',
-			    'color'            	: '#666',
+			    'color'            	: this.options.textColor,
 			    'text-decoration'  	: 'none',
+			    height             	: this.options.navHeight,
 			    margin				: 0,
     			padding				: 0
 			});
 
+			//
 			this.$sideline 		= this.$list.find('ul .sideline');
-
 			this.$sideline.css({
-				left			   	: 0,
-				'display'          	: 'block',
-				'position'         	: 'absolute',
-			    'border'           	: '0',
-			    'height'           	: '2px',
-			    'background-color' 	: '#48a5f4',
-			    'top'              	: '43px',
+			    'position'   		: 'absolute',
+			    'background-color' 	: this.options.sideLineColor,
+			    height           	: this.options.sideLineHeight,
+			    left				: 0,
+			    top             	: (this.options.navHeight - this.options.sideLineHeight),
 			    margin				: 0,
-    			padding				: 0,
+    			padding				: 0
 			});
 
-			this.count			= this.$li.length;
+			this.$image 		= this.$a.find('img');
+			if(this.$image.length > 0){
+				this.$image.css({
+					'vertical-align' 	: 'middle',
+					margin				: 0,
+    				padding				: 0
+				});
+			}
+
+			this.$label 		= this.$a.find('label');
+			if(this.$label.length > 0){
+				this.$label.css({
+					'vertical-align' 	: 'middle',
+					margin				: 0,
+    				padding				: 0
+				});
+			}
+
+			this.count			= this.$a.length;
 
 			this.navWidth 		= this.options.navWidth;
 
 			this.$sideline.width(this.navWidth);
 
-			this.$el.width(this.navWidth * (this.count - 1));
+			this.$el.width(this.navWidth * this.count);
 
 			this._each();
 
@@ -125,9 +152,9 @@
 		}
 	};
 	
-	$.fn.navigationBar			= function( options , data) {
+	$.fn.navigationBar			= function( options, data) {
 
-		if(data == undefined){
+		if (arguments.length == 1){
 			data = options;
 			options = {};
 		}
@@ -156,10 +183,9 @@
 			});
 		
 		} else {
-
-			var source = $("#tpl_navigationbar").html();
+			
+			var source = $('#tpl_navigationbar').html();
 			var template = Handlebars.compile(source);
-
 			this.html(template(data));
 			
 			var instance = $.data( this, 'navigationBar' );
