@@ -27,7 +27,8 @@
 		sideLineHeight 	: 2,			// 导航栏的下边线的高度
 		sideLineColor   : '#48a5f4',  	// 导航栏的下边线的颜色
 		textSize  		: 18,			// 导航栏标签文字的大小
-		textColor		: '#666'		// 导航栏标签文字的大小
+		textColor		: '#666',		// 导航栏标签文字的颜色
+		autoAdaptation	: false			// 标签宽度是否自动适应所在容器大小
     };
 	
 	$.NavigationBar.prototype 	= {
@@ -111,11 +112,13 @@
 
 			this.count			= this.$a.length;
 
-			this.navWidth 		= this.options.navWidth;
-
+			if(this.options.autoAdaptation){ //开启自动适应
+				this.navWidth 	= this.$el.width() / this.count;
+			}else{
+				this.navWidth 		= this.options.navWidth;
+				this.$el.width(this.navWidth * this.count);
+			}
 			this.$sideline.width(this.navWidth);
-
-			this.$el.width(this.navWidth * this.count);
 
 			this._each();
 
