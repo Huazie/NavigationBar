@@ -17,10 +17,14 @@
 <div id="find_nav" class="find_nav">
     
 </div>
+
+<div id="content" class="content">
+	<img src=""/>
+</div>
 <script id="tpl_navigationbar" type="text/x-handlebars-template">
     <div class="navigationbar_list">
     	{{#nav_list nav}}
-    		<a href="javascript:handleClickEvent({{index}});"><img src="{{url}}"/></a>
+    		<a href="javascript:;"><img src="{{url}}"/></a>
     	{{/nav_list}}
     </div>
 </script>
@@ -28,30 +32,32 @@
 
 var json = {
 	nav:[
-		{ index:0, url:"./image/11.png"},
-		{ index:1, url:"./image/12.png"},
-		{ index:2, url:"./image/13.png"},
-		{ index:3, url:"./image/14.png"},
-		{ index:4, url:"./image/15.png"},
-		{ index:5, url:"./image/16.png"}
+		{ url:"./image/11.png"},
+		{ url:"./image/12.png"},
+		{ url:"./image/13.png"},
+		{ url:"./image/14.png"},
+		{ url:"./image/15.png"},
+		{ url:"./image/16.png"}
 	]
 }
 
 
 $(function() {
 
-	$('#find_nav').navigationBar(json);
-
-	//var navigationBar = new $.NavigationBar( {}, $('#find_nav') );
+	$('#find_nav').navigationBar({
+		initLayout	: layout
+	},json);
 
 });
 
 /**
- * callback 回调函数
+ *	这里设置标签对应布局，根据index来决定
+ * 
+ *  @param index 
+ * 		标签的索引值
  */
-function handleClickEvent(index){
-	console.log(json.nav[index]['url']);
-	console.log(index);
+var layout = function handleClickEvent(index){
+	$('#content img').attr("src", json.nav[index - 1]['url']);
 }
 
 </script>
