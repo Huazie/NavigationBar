@@ -118,7 +118,7 @@
 			this.count			= this.$a.length;//导航标签的数目
 
 			if(this.options.autoAdaptation){ //开启自动适应，将以父容器大小决定每个导航标签的大小
-				this.navWidth 	= this.$el.width() / this.count;
+				this.navWidth 	= (1 / this.count) * 100 + '%';//能够根据父容器大小改变自身大小
 			}else{	// 关闭自动适应，则使用定义的宽度决定整个导航栏的大小
 				this.navWidth 	= this.options.navWidth;
 				this.$el.width(this.navWidth * this.count);
