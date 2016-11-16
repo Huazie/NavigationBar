@@ -2,6 +2,12 @@ body{
     margin: 0;
     padding: 0;
 }
+
+p{
+    width:auto;
+    text-align: center;
+}
+
 .find_nav {
 	width: 60%;
     background-color: #f9f9f9;
