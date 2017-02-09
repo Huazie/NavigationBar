@@ -1,6 +1,6 @@
 # Examples for navigation-bar.1.0.0.js
 
-<http://Huazie.github.io/>
+<https://huazie.github.io/>
 ------------
 
 **V1.0.0 :**
